@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.lift-view {
+  min-height: 140px;
+  background-color: rgb(234, 234, 234);
+  width: 800px;
+  border-bottom: 3px solid black;
+  display: flex;
+  align-items: flex-end;
+}
+.floor {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 1rem;
+}
+
+.lift {
+  height: 100px;
+  width: 50px;
+  background-color: rgb(101, 101, 253);
+  border-radius: 0.1rem;
+  margin-right: 1rem;
+}
+.text-box {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: larger;
+  margin-left: 1rem;
+}
+.btn-view {
+  padding: 10px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-up {
+  background-color: rgb(140, 220, 20);
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.1rem 1rem;
+  font-size: large;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+  cursor: pointer;
+  transition-duration: 200ms;
+}
+.btn-down {
+  background-color: rgb(218, 168, 30);
+  border: none;
+  border-radius: 0.2rem;
+  padding: 0.1rem 1rem;
+  font-size: large;
+  cursor: pointer;
+  font-weight: 500;
+  transition-duration: 200ms;
+}
+.btn-up:hover {
+  background-color: lightgreen;
+}
+.btn-down:hover {
+  background-color: orange;
+}
+
+.lift-container {
+  display: flex;
+  margin-top: -100px;
+}
