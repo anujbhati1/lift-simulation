@@ -87,9 +87,26 @@
   height: 100px;
   width: 50px;
   background-color: rgb(101, 101, 253);
-  border-radius: 0.1rem;
+  border-radius: 0.5rem;
   margin-left: 1rem;
   /* position: absolute; */
+  /* display: flex; */
+  overflow: hidden;
+}
+
+/* For lift doors */
+.lift-door {
+  width: 50%;
+  height: 100%;
+  position: relative;
+}
+.lift-door-left {
+  background-color: brown;
+  float: left;
+}
+.lift-door-right {
+  background-color: brown;
+  float: right;
 }
 
 /* For Floors */

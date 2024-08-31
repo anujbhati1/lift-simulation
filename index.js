@@ -34,11 +34,25 @@ function createFloorAndLifts() {
   //Create Lifts and place lifts
   const liftContainer = document.createElement('div');
   liftContainer.className = 'lift-container';
+
   for (let i = 1; i <= noOfLifts; i++) {
     const lift = document.createElement('div');
     lift.className = 'lift';
     lift.id = `l${i}`;
     lift.style.left = `${15 + 10 * i}%`;
+
+    let leftDoor = document.createElement('div');
+    let rightDoor = document.createElement('div');
+
+    leftDoor.classList.add('lift-door', 'lift-door-left');
+    rightDoor.classList.add('lift-door', 'lift-door-right');
+
+    leftDoor.id = `ld${i}`;
+    rightDoor.id = `rd${i}`;
+
+    lift.appendChild(leftDoor);
+    lift.appendChild(rightDoor);
+
     let liftObj = {
       id: i,
       lift: lift,
@@ -67,18 +81,65 @@ function selectLiftForFloor(floor) {
   return selectedLiftId;
 }
 
+function closeDoor(e) {
+  console.log('This is closeDoor', e.target.id);
+  let divId = e.target.id;
+  let liftId = divId.substring(2);
+
+  let leftDoor = document.getElementById(`ld${liftId}`);
+  let rightDoor = document.getElementById(`rd${liftId}`);
+
+  rightDoor.removeEventListener('webkitTransitionEnd', closeDoor);
+
+  leftDoor.style.transform = 'translateX(0)';
+  rightDoor.style.transform = 'translateX(0)';
+
+  leftDoor.style.transition = 'all 2.5s ease-out';
+  rightDoor.style.transition = 'all 2.5s ease-out';
+
+  setTimeout(() => {
+    stopLift(liftId);
+  }, 2500);
+}
+
+function doorAnimation(e) {
+  let divId = e.target.id;
+  console.log('This is dooor animation', divId);
+  let liftId = divId.substring(1);
+  console.log('This is doorAnimationId', liftId);
+
+  let lift = document.getElementById(`l${liftId}`);
+  lift.removeEventListener('webkitTransitionEnd', doorAnimation);
+
+  let leftDoor = document.getElementById(`ld${liftId}`);
+  let rightDoor = document.getElementById(`rd${liftId}`);
+
+  leftDoor.removeEventListener('webkitTransitionEnd', doorAnimation);
+  rightDoor.removeEventListener('webkitTransitionEnd', doorAnimation);
+
+  rightDoor.addEventListener('webkitTransitionEnd', closeDoor);
+
+  leftDoor.style.transform = 'translateX(-100%)';
+  rightDoor.style.transform = 'translateX(100%)';
+
+  leftDoor.style.transition = 'all 2.5s ease-out';
+  rightDoor.style.transition = 'all 2.5s ease-out';
+}
+
 function saveFloorId(id, type) {
   queue.push(id);
   console.log(`Save floor id ${id} and type ${type} in queue.`);
 }
 
 function stopLift(liftId) {
+  console.log('These are lifts', lifts);
+  console.log('This is the stop id', liftId, typeof liftId);
   for (lift of lifts) {
-    if (lift.id === liftId) {
+    if (lift.id === Number(liftId)) {
       lift.moving = false;
+      console.log('Lift Stopped with id', liftId);
     }
   }
-  console.log('Lift Stopped with id', liftId);
 }
 
 function moveLift(lift, floor) {
@@ -88,18 +149,26 @@ function moveLift(lift, floor) {
   lift.currentFloor = floor;
   lift.moving = true;
   let liftDiv = lift.lift;
+  liftDiv.addEventListener('webkitTransitionEnd', doorAnimation);
   liftDiv.style.transform = `translateY(${distance}%)`;
   let time = 2.5 * Math.abs(from - floor);
   liftDiv.style.transitionDuration = `${time}s`;
 
+  if (time === 0) {
+    let e = {};
+    e.target = {};
+    e.target.id = `l${liftId}`;
+    doorAnimation(e);
+  }
+
   console.log('This is distance', distance);
-  setTimeout(() => {
-    stopLift(liftId);
-  }, time * 1000);
+  // setTimeout(() => {
+  //   stopLift(liftId);
+  // }, time * 1000);
 }
 
 function checkScheduling() {
-  console.log('Check schedulling called');
+  // console.log('Check schedulling called', queue);
   if (queue.length === 0) return;
   floorId = queue.shift();
   let lift = selectLiftForFloor(floorId);
