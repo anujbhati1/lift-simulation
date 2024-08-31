@@ -7,17 +7,50 @@
     <link rel="stylesheet" href="style.css" />
     <script defer src="index.js"></script>
   </head>
-  <body>
+  <body style="background-color: rgb(196, 242, 242)">
+    <div class="heading">Lift Simulation</div>
     <div id="container" class="main">
-      <div id="setup">
-        <label for="floors">Number of Floors:</label>
-        <input required type="number" id="floors" min="1" max="10" value="4" />
+      <div id="setup" class="input-container">
+        <div class="input-div">
+          <label for="floors" class="input-label">Number of Floors:</label>
+          <input
+            class="input-box"
+            required
+            type="number"
+            id="floors"
+            min="1"
+            max="10"
+            value="4"
+          />
+        </div>
         <br />
-        <label for="lifts">Number of Lifts:</label>
-        <input required type="number" id="lifts" min="1" max="5" value="1" />
+        <div class="input-div">
+          <label for="lifts" class="input-label">Number of Lifts:</label>
+          <input
+            class="input-box"
+            required
+            type="number"
+            id="lifts"
+            min="1"
+            max="5"
+            value="1"
+          />
+        </div>
         <br />
-        <button onclick="startSimulation()">Start Simulation</button>
+        <button class="start-btn" onclick="startSimulation()">
+          Start Simulation
+        </button>
       </div>
+    </div>
+    <div class="footer">
+      Link of the Github Repository :
+      <a
+        class="link"
+        target="_blank"
+        href="https://github.com/anujbhati1/lift-simulation"
+      >
+        Source Code
+      </a>
     </div>
   </body>
 </html>

@@ -19,11 +19,11 @@ function createFloorAndLifts() {
     // floor.dataset.floor = i;
     floor.innerHTML = `
       <div class="floor">
+      <div class="btn-view">
+        <button onclick="saveFloorId(${i}, 'up')" class="btn-up">Up</button>
+        <button onclick="saveFloorId(${i}, 'down')" class="btn-down">Down</button>
+      </div>
         <div class="lift-view" data-floor="${i}">
-          <div class="btn-view">
-            <button onclick="saveFloorId(${i}, 'up')" class="btn-up">Up</button>
-            <button onclick="saveFloorId(${i}, 'down')" class="btn-down">Down</button>
-          </div>
         </div>
         <div class="text-box">Floor ${i}</div>
       </div>
@@ -89,13 +89,13 @@ function moveLift(lift, floor) {
   lift.moving = true;
   let liftDiv = lift.lift;
   liftDiv.style.transform = `translateY(${distance}%)`;
-  let time = 2 * Math.abs(from - floor);
+  let time = 2.5 * Math.abs(from - floor);
   liftDiv.style.transitionDuration = `${time}s`;
 
   console.log('This is distance', distance);
   setTimeout(() => {
     stopLift(liftId);
-  }, time);
+  }, time * 1000);
 }
 
 function checkScheduling() {
@@ -112,9 +112,19 @@ function checkScheduling() {
 }
 
 function startSimulation() {
+  let floors = floorInput.value;
+  let lifts = liftInput.value;
+  if (floors > 10) {
+    alert('Floors cannot be more than 10');
+    return;
+  }
+  if (lifts > 5) {
+    alert('Lifts cannot be more than 5');
+    return;
+  }
   clearInterval(intervalId);
   queue = [];
   lifts = [];
   createFloorAndLifts();
-  intervalId = setInterval(checkScheduling, 500);
+  intervalId = setInterval(checkScheduling, 300);
 }

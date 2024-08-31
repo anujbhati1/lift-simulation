@@ -1,8 +1,10 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
+/* For Main Container */
 .main {
   display: flex;
   flex-direction: column;
@@ -10,36 +12,100 @@
   width: 100%;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  position: relative;
+  /* position: relative; */
 }
 
+/* For Heading */
+.heading {
+  font-size: xx-large;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+/* For Input Component */
+.input-container {
+  padding: 2rem;
+  border: 2px solid black;
+  border-radius: 1rem;
+}
+.input-box {
+  font-size: larger;
+  padding: 5px 10px;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  margin: 10px;
+  flex-grow: 1;
+}
+.start-btn {
+  background-color: burlywood;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  font-weight: 500;
+  font-size: large;
+  transition-duration: 300ms;
+}
+.start-btn:hover {
+  cursor: pointer;
+  scale: 1.05;
+  background-color: coral;
+}
+
+/* For Input divs */
+.input-label {
+  font-weight: bold;
+  flex-grow: 1;
+  font-size: large;
+}
+.input-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* For Lifts */
+.lift-container {
+  display: flex;
+  margin-top: -100px;
+}
 .lift-view {
   min-height: 140px;
-  background-color: rgb(234, 234, 234);
-  width: 800px;
+  background-color: beige;
+  /* background-color: rgb(234, 234, 234); */
+  width: 100%;
   border-bottom: 3px solid black;
   display: flex;
   align-items: flex-end;
 }
-.floor {
-  display: flex;
-  align-items: flex-end;
-  margin-top: 1rem;
-}
-
 .lift {
   height: 100px;
   width: 50px;
   background-color: rgb(101, 101, 253);
   border-radius: 0.1rem;
-  /* margin-right: 1rem; */
-  position: absolute;
+  margin-left: 1rem;
+  /* position: absolute; */
+}
+
+/* For Floors */
+.floor {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 1200px;
 }
 .text-box {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: larger;
   margin-left: 1rem;
+  min-width: fit-content;
 }
 .btn-view {
   padding: 10px;
@@ -47,7 +113,6 @@
   display: flex;
   flex-direction: column;
 }
-
 .btn-up {
   background-color: rgb(140, 220, 20);
   border: none;
@@ -76,11 +141,14 @@
   background-color: orange;
 }
 
-.lift-container {
-  display: flex;
-  margin-top: -100px;
-}
-
+/* For Footer */
 .footer {
-  margin-top: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: large;
+  font-weight: normal;
+}
+.link {
+  color: rgb(120, 15, 218);
 }
