@@ -4,6 +4,7 @@ const liftInput = document.getElementById('lifts');
 let lifts = [];
 let queue = [];
 let intervalId; //For clearing the interval
+let liftLeftForFloors = [];
 
 function createFloorAndLifts() {
   const container = document.getElementById('container');
@@ -99,7 +100,7 @@ function closeDoor(e) {
 
   setTimeout(() => {
     stopLift(liftId);
-  }, 2500);
+  }, 2800);
 }
 
 function doorAnimation(e) {
@@ -127,7 +128,10 @@ function doorAnimation(e) {
 }
 
 function saveFloorId(id, type) {
-  queue.push(id);
+  if (!liftLeftForFloors.includes(id)) {
+    liftLeftForFloors.push(id);
+    queue.push(id);
+  }
   console.log(`Save floor id ${id} and type ${type} in queue.`);
 }
 
@@ -140,6 +144,8 @@ function stopLift(liftId) {
       console.log('Lift Stopped with id', liftId);
     }
   }
+
+  liftLeftForFloors.shift();
 }
 
 function moveLift(lift, floor) {
@@ -168,15 +174,17 @@ function moveLift(lift, floor) {
 }
 
 function checkScheduling() {
-  // console.log('Check schedulling called', queue);
   if (queue.length === 0) return;
+
   floorId = queue.shift();
   let lift = selectLiftForFloor(floorId);
   if (!lift) {
     queue.unshift(floorId);
     return;
   }
+
   moveLift(lift, floorId);
+
   console.log('!!!', lift, floorId);
 }
 
