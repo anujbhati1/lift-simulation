@@ -169,3 +169,7 @@
 .link {
   color: rgb(120, 15, 218);
 }
+
+.hide {
+  visibility: hidden;
+}

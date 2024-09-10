@@ -21,8 +21,12 @@ function createFloorAndLifts() {
     floor.innerHTML = `
       <div class="floor">
       <div class="btn-view">
-        <button onclick="saveFloorId(${i}, 'up')" class="btn-up">Up</button>
-        <button onclick="saveFloorId(${i}, 'down')" class="btn-down">Down</button>
+        <button onclick="saveFloorId(${i}, 'up')" class="btn-up ${
+      i === noOfFloors ? 'hide' : ''
+    }">Up</button>
+        <button onclick="saveFloorId(${i}, 'down')" class="btn-down ${
+      i === 1 ? 'hide' : ''
+    }">Down</button>
       </div>
         <div class="lift-view" data-floor="${i}">
         </div>
