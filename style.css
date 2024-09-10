@@ -118,7 +118,7 @@
 .floor {
   display: flex;
   align-items: flex-end;
-  margin-top: 1rem;
+  margin-top: 15px;
   width: 100%;
   /* flex-grow: 1; */
 

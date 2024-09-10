@@ -154,7 +154,9 @@ function stopLift(liftId) {
 }
 
 function moveLift(lift, floor) {
-  let distance = -1 * (floor - 1) * 158;
+  const oneFloorHeight = document.getElementById('fdiv1').offsetHeight;
+  console.log('OffsetHeight', oneFloorHeight);
+  let distance = -1 * (floor - 1) * (oneFloorHeight + 15);
   let liftId = lift.id;
   let from = lift.currentFloor;
   lift.currentFloor = floor;
