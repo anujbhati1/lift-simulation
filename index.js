@@ -16,10 +16,10 @@ function createFloorAndLifts() {
   // Create floors
   for (let i = noOfFloors; i >= 1; i--) {
     const floor = document.createElement('div');
-    floor.className = 'floor';
+    // floor.className = 'floor';
     // floor.dataset.floor = i;
     floor.innerHTML = `
-      <div class="floor">
+      <div class="floor" id="fdiv${i}">
       <div class="btn-view">
         <button onclick="saveFloorId(${i}, 'up')" class="btn-up ${
       i === noOfFloors ? 'hide' : ''
@@ -28,17 +28,18 @@ function createFloorAndLifts() {
       i === 1 ? 'hide' : ''
     }">Down</button>
       </div>
-        <div class="lift-view" data-floor="${i}">
+      <div class="text-box">F-${i}</div>
+        <div class="lift-view" id="lv${i}" data-floor="${i}">
         </div>
-        <div class="text-box">Floor ${i}</div>
       </div>
     `;
     container.appendChild(floor);
   }
 
   //Create Lifts and place lifts
-  const liftContainer = document.createElement('div');
-  liftContainer.className = 'lift-container';
+  const floorContainer = document.getElementById('fdiv1');
+  const liftContainer = document.getElementById('lv1');
+  // liftContainer.className = 'lift-view';
 
   for (let i = 1; i <= noOfLifts; i++) {
     const lift = document.createElement('div');
@@ -69,7 +70,7 @@ function createFloorAndLifts() {
 
     liftContainer.appendChild(lift);
   }
-  container.appendChild(liftContainer);
+  floorContainer.appendChild(liftContainer);
 }
 
 function selectLiftForFloor(floor) {
