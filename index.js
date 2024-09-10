@@ -154,7 +154,7 @@ function stopLift(liftId) {
 }
 
 function moveLift(lift, floor) {
-  let distance = -1 * (floor - 1) * 175;
+  let distance = -1 * (floor - 1) * 158;
   let liftId = lift.id;
   let from = lift.currentFloor;
   lift.currentFloor = floor;
