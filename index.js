@@ -196,11 +196,11 @@ function startSimulation() {
   let floors = floorInput.value;
   let lifts = liftInput.value;
   if (floors < 1) {
-    alert('Floors must be greater than 1');
+    alert('Floors must be greater than 0');
     return;
   }
-  if (lifts > 5 || lifts < 1) {
-    alert('Lifts must be between 1 to 5');
+  if (lifts < 1) {
+    alert('Lifts must be greater 0');
     return;
   }
   clearInterval(intervalId);
