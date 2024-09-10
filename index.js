@@ -195,8 +195,8 @@ function checkScheduling() {
 function startSimulation() {
   let floors = floorInput.value;
   let lifts = liftInput.value;
-  if (floors > 10 || floors < 1) {
-    alert('Floors must be between 1 to 10');
+  if (floors < 1) {
+    alert('Floors must be greater than 1');
     return;
   }
   if (lifts > 5 || lifts < 1) {
